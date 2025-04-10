@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class OrangeJuice {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int requestedSize;
+        int[] bottleSize = {2000, 1000, 500, 200, 125};
+        
+        System.out.println("How much orange juice do you want (in millilitres)?: ");
+        requestedSize = scanner.nextInt();
+      
+        if (requestedSize < 125 || requestedSize > 5000) {
+            System.out.println("Please enter a valid value.");
+             
+        }
+            
+        System.out.println("You need the following bottles:");
+
+        for (int size : bottleSize) {
+            
+
+            int numberOfBottles = requestedSize / size;
+            requestedSize %= size; 
+
+            if (numberOfBottles > 0) {
+                System.out.println(numberOfBottles + " x " + size + "ml (full)");
+            }
+        }
+
+        
+        if (requestedSize > 0) {
+            System.out.println("1 x 125ml (part filled)");
+        }
+        
+        System.out.println("Enjoy your juice!");
+        scanner.close(); 
+    }
+}
