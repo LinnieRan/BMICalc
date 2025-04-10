@@ -1,0 +1,87 @@
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Jackpot {
+    public static Set<Integer> sixRequestedNumbers() {
+        Set<Integer> integers = new HashSet<>();
+        Scanner input = new Scanner(System.in);
+
+        while (integers.size() != 6){
+           
+            System.out.println("put six numbers from 1-45: ");
+            
+            int number = input.nextInt();
+            if (number <= 45 && number >= 1){
+                integers.add(number);
+            }
+            else {System.out.println("Please input a valid number");
+        }
+          
+            
+
+        }
+        input.close();
+        return integers;
+    }
+    public static int getRandomNumber() {
+        return (int)(Math.random() * 45) + 1;
+    }
+    public static Set<Integer> getSixUniqueNumbers() {
+        Set<Integer> integers = new HashSet<>();  
+        while (integers.size() != 6) {
+            int randomNum = getRandomNumber(); 
+            integers.add(randomNum); 
+        }
+       
+        return integers;
+    }
+
+    public static void main(String[] args) {
+
+        Set<Integer> randomNumbers = getSixUniqueNumbers(); 
+         
+        //System.out.println(randomNumbers);
+        Set<Integer> userNumbers = sixRequestedNumbers();
+       
+
+         
+
+        int counter = 0;
+       
+        for (Integer integer : randomNumbers) {
+            boolean isContained = userNumbers.contains(integer);
+         
+            if (isContained == true){
+                counter++; 
+            }
+            
+
+
+        }
+        System.out.println(counter);
+
+        switch (counter) {
+            case 2:
+            System.out.println("matching numbers =£10");
+            break;
+            case 3:
+            System.out.println("matching numbers =£250");
+            break;
+            case 4:
+            System.out.println("matching numbers =£45,000");
+            break;
+            case 5:
+            System.out.println("matching numbers =£220,000");
+            break;
+            case 6:
+            System.out.println("matching numbers =£6,400,000");
+            break;
+            default:
+            System.out.println("nothing matching, you loser");
+                break;
+        }
+        System.out.println(randomNumbers);
+
+    }
+}
